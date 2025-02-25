@@ -4,6 +4,12 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const metadata = {
+  title: "Training Site",
+  description: "A modern web application with Supabase",
+    generator: 'v0.dev'
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -11,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="min-h-screen bg-background">{children}</div>
+      </body>
     </html>
   )
 }
@@ -19,7 +27,3 @@ export default function RootLayout({
 
 
 import './globals.css'
-
-export const metadata = {
-      generator: 'v0.dev'
-    };

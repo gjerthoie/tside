@@ -1,21 +1,24 @@
-import { headers } from "next/headers"
-import { redirect } from "next/navigation"
-import { WorkoutForm } from "@/components/workout-form"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 
 export default function Home() {
-  const headersList = headers()
-  const userId = headersList.get("x-user-id")
-
-  if (!userId) {
-    redirect("/login")
-  }
-
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-4xl font-bold mb-8">Training Tracker</h1>
-      <div className="grid gap-6">
-        <WorkoutForm />
-      </div>
+    <div className="container flex items-center justify-center min-h-screen py-10">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl">Welcome</CardTitle>
+          <CardDescription>Get started by signing in to your account</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <Button asChild>
+            <Link href="/login">Sign In</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/register">Create Account</Link>
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   )
 }
