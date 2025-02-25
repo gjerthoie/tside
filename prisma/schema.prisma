@@ -1,3 +1,24 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String    @unique
+  password      String
+  name          String?
+  dateOfBirth   DateTime?
+  profileImage  String    @default("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Default-Profile-Picture-Download-PNG-Image-qhTcpfOZJCXYoTtxxKQ8AB6oTh1L7r.png")
+  workouts      Workout[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
 model Workout {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   title       String
